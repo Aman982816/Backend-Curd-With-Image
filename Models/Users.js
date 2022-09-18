@@ -19,8 +19,8 @@ const UserSchema = new Schema({
         minlength:10,
        maxlenght: 15
 
-    }, profileImage:
-    {
+    }, 
+    profileImage:{
         data: Buffer,
         contentType: String
     }

@@ -82,9 +82,9 @@ router.post('/adduser',
         ,
         check('phone', 'please enter valid phone number')
             .exists(),
-        check('profileImage', 'please select a vlid image')
+        check('uploadProfileImage', 'please select a vlid image')
             .exists()
-
+         
     ]
 
     ,
@@ -103,8 +103,6 @@ router.post('/adduser',
 
             //Destructuring data from request
             const { name, age, phone } = req.body
-            const { filename } = req.file
-
 
             //adding user details in the Db
             const AddedUser = await User.create({
@@ -113,7 +111,7 @@ router.post('/adduser',
                 age,
                 profileImage: {
                     // data: fs.readFileSync(path.join(__dirname + '/uploads/' + filename)),
-                    data: fs.readFileSync(path.join(__dirname, "../", '/uploads/' + filename)),
+                    data: fs.readFileSync(path.join(__dirname, "../", '/uploads/' + req.file.filename)),
                     contentType: "image/png"
                 }
             })
@@ -130,7 +128,13 @@ router.post('/adduser',
 
         } catch (error) {
             console.error(error.message);
-            res.status(500).json({ message: error.message })
+            if (error.message == "Cannot read properties of undefined (reading 'filename')") {
+                res.status(500).json({ message: "please select a valid file" })
+            }
+            else {
+
+                res.status(500).json({ message: error.message })
+            }
         }
 
 
