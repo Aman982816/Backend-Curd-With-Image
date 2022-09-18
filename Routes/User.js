@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 //For backend data validation 
-const {  check,validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 //importing User Model
 const User = require('../Models/Users.js')
 //Multer used for file storing and uploading in db 
@@ -39,7 +39,7 @@ router.get('/getUsers', async (req, res) => {
         res.json(allData)
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: error.message })
     }
 
 
@@ -59,7 +59,7 @@ router.get('/getUser/:id', async (req, res) => {
         res.json(oneUser)
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: error.message })
     }
 
 
@@ -79,12 +79,12 @@ router.post('/adduser',
             .isLength({ min: 3 }),
         check('age', 'please enter age')
             .exists()
-            ,
+        ,
         check('phone', 'please enter valid phone number')
             .exists(),
-        check('profileImage','please select a vlid image')
-        .exists()
-            
+        check('profileImage', 'please select a vlid image')
+            .exists()
+
     ]
 
     ,
@@ -119,7 +119,10 @@ router.post('/adduser',
             })
 
             //sending added user in response
-            res.json(AddedUser)
+            res.json({
+                message: 'User Added Successfully',
+                data: AddedUser
+            })
 
 
 
@@ -127,7 +130,7 @@ router.post('/adduser',
 
         } catch (error) {
             console.error(error.message);
-            res.status(500).send("Internal Server Error");
+            res.status(500).json({ message: error.message })
         }
 
 
@@ -167,12 +170,17 @@ router.put('/updateuser/:id', upload.single('uploadProfileImage'), async (req, r
         const { id } = req.params
 
         const updatedUser = await User.findByIdAndUpdate(id, { $set: updatingUser }, { new: true })
-        res.send(`put request ${updatedUser} `)
+
+        res.json({
+            message: "User updated  Successfully",
+            data: updatedUser
+        })
+
 
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: error.message })
     }
 
 
@@ -189,12 +197,19 @@ router.delete("/deleteuser/:id", async (req, res) => {
         const { id } = req.params
 
         const deleteduser = await User.findByIdAndDelete(id, { new: true })
-        res.send(`delete request ${deleteduser} `)
+
+
+        res.json({
+            message: "User Deleted  Successfully",
+            data: deleteduser
+        })
+
+
 
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: error.message })
     }
 
 })
