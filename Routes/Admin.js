@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+
 //For backend data validation 
 const { check, validationResult } = require('express-validator');
 //importing User Model
@@ -9,51 +10,7 @@ const User = require('../Models/Users.js');
 const { APPSECRET } = require('../config/config.js');
 
 
-
-
-
-//route for getting all the users from the Db
-// router.get('/getUsers', async (req, res) => {
-
-//     try {
-
-//         const allData = await User.find()
-//         res.json(allData)
-//     } catch (error) {
-//         console.error(error.message);
-//         res.status(500).json({ message: error.message })
-//     }
-
-
-
-
-// })
-
-//Getting User by id 
-// router.get('/getUser/:id', async (req, res) => {
-
-//     try {
-
-//         const { id } = req.params
-
-//         const oneUser = await User.findById(id)
-
-//         res.json(oneUser)
-//     } catch (error) {
-//         console.error(error.message);
-//         res.status(500).json({ message: error.message })
-//     }
-
-
-
-
-// })
-
-
-
-
-
-// Register user 
+// Registering a admin user 
 
 router.post('/Register',
 
@@ -90,7 +47,7 @@ router.post('/Register',
             //Destructuring data from request
             const { name, email, password, role } = req.body;
 
-          
+
 
             // Checking whether the user with this email exists already
             let user = await User.findOne({ email });
@@ -106,18 +63,18 @@ router.post('/Register',
                 const encrptedpassword = await bcrypt.hash(password, 10);
 
 
-             
+
                 //adding user details in the Db
                 const AddedUser = await User.create({
                     name,
                     email,
                     password: encrptedpassword,
-                    role:"user"
+                    role: "admin"
                 })
 
                 //sending added user in response
                 res.json({
-                    message: 'User Added Successfully',
+                    message: 'User Registerd Successfully',
                     data: AddedUser
                 })
 
@@ -139,7 +96,9 @@ router.post('/Register',
     });
 
 
-//  Authenticating a User using 
+
+
+//  Authenticating a admin User using 
 router.post('/login',
     [
 
@@ -194,11 +153,5 @@ router.post('/login',
 
 
     });
-
-
-
-
-
-
 
 module.exports = router

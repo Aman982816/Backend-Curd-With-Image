@@ -2,31 +2,31 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const BillSchema = new Schema({
     name: {
         type: String,
         required: true
     },
 
-    email: {
+    billno: {
         type: String,
         required: true,
         unique: true,
     },
-    password: {
+    product: {
+        type: String,
+        required: true,
+
+    },
+    price: {
         type: String,
         required: true,
 
 
-    },
-    role: {
-        type: String,
-        enum: ["admin", "user"],
-        default: "user"
     }
 });
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+const Bill = mongoose.model('Bill', BillSchema);
+module.exports = Bill;
 
 
 

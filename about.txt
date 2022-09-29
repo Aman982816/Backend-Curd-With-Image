@@ -1,0 +1,69 @@
+//please set environment varialbles
+
+PORT
+USERNAME
+PASSWORD
+DATABASENAME
+SECRET
+
+
+===================================
+
+
+
+All Routes
+
+=================================
+// For Normal user
+
+//Registering Normal user
+${host}/user/register
+
+
+//Login user
+${host}/user/login/
+
+
+=================================
+
+
+// For admin user
+
+
+
+//Registering admin user
+
+${host}/admin/register
+
+
+
+//login admin  user 
+
+${host}/admin/login/
+
+
+=================================
+// for bill
+//getting all bills 
+${host}/bill/getallbills/
+
+//geting All bills
+
+${host}/bill/getallbills/
+
+//geting one bill by id
+${host}/bill/getbill/${id}
+
+//updating bill 
+${host}/bill/updatebill/${id}
+
+//deleting user
+
+${host}/bill/deletebill/${id}
+
+
+
+
+
+
+

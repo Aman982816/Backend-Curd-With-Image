@@ -4,7 +4,7 @@ const connectToMongo = require('./Database/db.js')
 
 
 //for using .env file or variables
-require('dotenv').config()
+// require('dotenv').config()
 
 
 // creating a server 
@@ -24,8 +24,9 @@ connectToMongo()
 
 
 // Available Routes
-app.use('/api/users/', require('./Routes/User.js'));
-
+app.use('/user/', require('./Routes/User.js'));
+app.use('/admin/', require('./Routes/Admin.js'));
+app.use('/bill/',require('./Routes/Bill.js'))
 
 
 
