@@ -6,5 +6,5 @@ module.exports = {
     USERNAME: process.env.USERNAME,
     PASSWORD: process.env.PASSWORD,
     DATABASENAME: process.env.DATABASENAME,
-    APPSECRET: process.env.SECRET
+    APPSECRET: process.env.APPSECRET
 }

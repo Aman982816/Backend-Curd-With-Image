@@ -299,11 +299,11 @@
     "colId": "history",
     "containerId": "",
     "name": "https://3002-vijay982816-backendcurd-ivc3urmho8w.ws-us67.gitpod.io/bill/getallbills",
-    "url": "https://3002-vijay982816-backendcurd-ivc3urmho8w.ws-us67.gitpod.io/bill/getallbills",
+    "url": "https://3010-vijay982816-backendcurd-6k5lcxb1x4m.ws-us69.gitpod.io/user/login",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-29T18:58:50.794Z",
-    "modified": "2022-09-29T18:58:50.892Z",
+    "modified": "2022-09-30T07:33:11.869Z",
     "headers": [],
     "params": [],
     "body": {

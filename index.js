@@ -26,7 +26,7 @@ connectToMongo()
 // Available Routes
 app.use('/user/', require('./Routes/User.js'));
 app.use('/admin/', require('./Routes/Admin.js'));
-app.use('/bill/',require('./Routes/Bill.js'))
+app.use('/bill/', require('./Routes/Bill.js'))
 
 
 
